@@ -18,7 +18,7 @@ Currently there are 3 variants:
 
 ## Contribute
 This fork will focus only on integrating other platforms. Unrelated patches will
-be rejected for now.
+be placed on the back burner for now.
 
 Feel free to suggest which alternative platforms should be included. Any contribution
 (development/testing/bug report) is greatly appreciated.
@@ -26,7 +26,12 @@ Feel free to suggest which alternative platforms should be included. Any contrib
 ## Which additional platforms are supported?
 - Bitchute
 - Rumble
-
+  
+## Which additional platforms are planned to be added?
+- NicoNico
+- BiliBili
+- Local Storage
+  
 ## Other features not found in NewPipe
 - merged NewPipe x Sponsorblock into this fork. [NewPipe x Sponsorblock Readme](../README.md)
 - searchfilters: in the action menu of the search page you can now change
