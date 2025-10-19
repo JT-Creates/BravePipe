@@ -1,8 +1,8 @@
 [Original NewPipe Readme](../README.md)
 
 ## About this fork
-Due to restrictive project policy, the NewPipeTeam refuses to add platforms that they
-find offensive. This fork (BravePipe) will not be as restrictive. As long as the
+Due to restrictive project policy, the NewPipeTeam and PipePipe devs refuses to add platforms that they
+find offensive, too hard to maintain, or deprecated. This fork (BravePipe) will not be as restrictive. As long as the
 platforms work in the spirit of free speech, they could be integrated.
 
 Nevertheless, platforms that promote pornography or other degrading things will
