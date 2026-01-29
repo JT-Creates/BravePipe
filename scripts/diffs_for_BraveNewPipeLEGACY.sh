@@ -36,8 +36,8 @@ legacyBase=app/src/$legacyFlavor/java/
 
 # call first: git fetch upstream  --tags if
 # -> upstream has to be defined as https://github.com/TeamNewPipe/NewPipe
-oldVersionTag="v0.28.0-2.4.0" # could also be hashes
-newVersionTag="v0.28.1-2.4.0" 
+oldVersionTag="v0.28.0-2.6.0" # could also be hashes
+newVersionTag="v0.28.1-2.6.0"
 
 for x in `find $legacyBase -type f ! -iname 'Brave*' | grep -v orig$ | grep -v rej$ | grep -v '\.*.sw.$'` ; do
     mainPath="$(echo "$x" | sed "s@src/$legacyFlavor/java@src/$mainFlavor/java@")"

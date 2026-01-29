@@ -3,6 +3,8 @@ package org.schabi.newpipe;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import org.schabi.newpipe.brave.misc.BraveRumble403Interceptor;
+import org.schabi.newpipe.brave.misc.BraveRumbleCloudflareManager;
 import org.schabi.newpipe.extractor.downloader.BraveCookieManager;
 import org.schabi.newpipe.util.image.PicassoHelper;
 
@@ -51,7 +53,30 @@ public final class BraveDownloaderImplUtils {
         final SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(context);
 
         addOrRemoveHostInterceptor(builder, context, settings);
+        addOrRemoveRumbleCloudflareInterceptor(builder, context, settings);
         addOrRemoveTimeoutInterceptor(builder, context, settings);
+    }
+
+    private static void addOrRemoveRumbleCloudflareInterceptor(
+            final OkHttpClient.Builder builder,
+            final Context context,
+            final SharedPreferences settings) {
+
+        final Optional<Interceptor> rumbleInterceptor =
+                BraveRumble403Interceptor.getInterceptor(builder);
+        final boolean isHandleCloudflareChallengeEnabled = settings.getBoolean(context.getString(
+                R.string.brave_settings_handle_cloudflare_challenge_enable_key), false);
+
+        if (isHandleCloudflareChallengeEnabled) {
+            if (rumbleInterceptor.isEmpty()) {
+                final BraveRumbleCloudflareManager manager =
+                        BraveRumbleCloudflareManager.getInstance(context);
+                builder.addInterceptor(new BraveRumble403Interceptor(manager));
+            }
+        } else {
+            rumbleInterceptor.ifPresent(interceptor -> builder.interceptors().remove(interceptor));
+
+        }
     }
 
     public static void addOrRemoveHostInterceptor(
@@ -138,6 +163,8 @@ public final class BraveDownloaderImplUtils {
             final Context context = App.getApp().getApplicationContext();
             if (configOption.equals(
                     context.getString(R.string.brave_settings_host_replace_key))
+                    || configOption.equals(context.getString(
+                    R.string.brave_settings_handle_cloudflare_challenge_enable_key))
                     || configOption.equals(
                     context.getString(R.string.sponsor_block_enable_key))
                     || configOption.equals(

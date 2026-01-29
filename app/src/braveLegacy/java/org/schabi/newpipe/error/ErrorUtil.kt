@@ -11,6 +11,7 @@ import android.widget.Toast
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.core.app.PendingIntentCompat
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.preference.PreferenceManager
 import com.google.android.material.snackbar.Snackbar
@@ -141,7 +142,7 @@ class ErrorUtil {
                             android.R.drawable.stat_notify_error
                     )
                     .setContentTitle(context.getString(R.string.error_report_notification_title))
-                    .setContentText(context.getString(errorInfo.messageStringId))
+                    .setContentText(errorInfo.getMessage(context))
                     .setAutoCancel(true)
                     .setContentIntent(
                         PendingIntentCompat.getActivity(
@@ -156,9 +157,11 @@ class ErrorUtil {
             NotificationManagerCompat.from(context)
                 .notify(ERROR_REPORT_NOTIFICATION_ID, notificationBuilder.build())
 
-            // since the notification is silent, also show a toast, otherwise the user is confused
-            Toast.makeText(context, R.string.error_report_notification_toast, Toast.LENGTH_SHORT)
-                .show()
+            ContextCompat.getMainExecutor(context).execute {
+                // since the notification is silent, also show a toast, otherwise the user is confused
+                Toast.makeText(context, R.string.error_report_notification_toast, Toast.LENGTH_SHORT)
+                    .show()
+            }
         }
 
         private fun getErrorActivityIntent(context: Context, errorInfo: ErrorInfo): Intent {
@@ -177,10 +180,10 @@ class ErrorUtil {
                 // fallback to showing a notification if no root view is available
                 createNotification(context, errorInfo)
             } else {
-                Snackbar.make(rootView, R.string.error_snackbar_message, Snackbar.LENGTH_LONG)
+                Snackbar.make(rootView, errorInfo.getMessage(context), Snackbar.LENGTH_LONG)
                     .setActionTextColor(Color.YELLOW)
                     .setAction(context.getString(R.string.error_snackbar_action).uppercase()) {
-                        openActivity(context, errorInfo)
+                        context.startActivity(getErrorActivityIntent(context, errorInfo))
                     }.show()
             }
         }

@@ -266,7 +266,7 @@ public class SearchFilterUIOptionMenu extends BaseSearchFilterUiGenerator {
         }
     }
 
-    private class CreateSortFilterUI extends CreateContentFilterUI {
+    private final class CreateSortFilterUI extends CreateContentFilterUI {
 
         private void addSortFilterUiToItemMap(final int id,
                                               final MenuItem item) {

@@ -8,6 +8,8 @@ import us.shandian.giga.get.DownloadMission;
 
 public abstract class BraveDownloadManagerService extends Service {
 
+    protected static final String EXTRA_SEGMENTS = "DownloadManagerService.extra.segments";
+
     protected void braveLaunchHlsPreProcessor(
             final DownloadMission mission,
             final DownloadManager mManager) {

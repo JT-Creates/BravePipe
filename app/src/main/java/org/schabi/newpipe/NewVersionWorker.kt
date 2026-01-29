@@ -39,7 +39,8 @@ class NewVersionWorker(
         versionName: String,
         apkLocationUrl: String?,
         versionCode: Int,
-        changeLog: String? // from BravePipe's json
+        // from BravePipe's json
+        changeLog: String?
     ) {
         if (BuildConfig.VERSION_CODE >= versionCode) {
             if (inputData.getBoolean(IS_MANUAL, false)) {
@@ -170,8 +171,7 @@ class NewVersionWorker(
     companion object {
         private val DEBUG = MainActivity.DEBUG
         private val TAG = NewVersionWorker::class.java.simpleName
-        private const val NEWPIPE_API_URL =
-            "https://raw.githubusercontent.com/bravepipeproject/bnp-r-mgr/master/api/data.json"
+        private const val NEWPIPE_API_URL = "https://newpipe.net/api/data.json"
         private const val IS_MANUAL = "isManual"
 
         /**

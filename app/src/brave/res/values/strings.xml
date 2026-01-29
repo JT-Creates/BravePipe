@@ -151,4 +151,10 @@
     <!-- begin - youtube podcasts feature -->
     <string name="channel_tab_podcasts">Podcasts</string>
     <!-- end - youtube podcasts feature -->
+
+    <!-- begin - settings for rumble cloudflare challenge handling -->
+    <string name="brave_settings_handle_cloudflare_challenge_description">Sometimes Rumble needs cloudflare handling via WebView. Cookies are being used.</string>
+    <string name="brave_settings_handle_cloudflare_challenge_title">Handle Rumble cloudflare challenge</string>
+    <string name="brave_rumble_cf_info">Rumble cloudflare error. Activate this setting if not already enabled: settings → brave settings → Handle Rumble cloudflare challenge</string>
+    <!-- end - settings for rumble cloudflare challenge handling -->
 </resources>

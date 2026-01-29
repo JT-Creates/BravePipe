@@ -61,11 +61,11 @@ public class ErrorActivity extends AppCompatActivity {
     // BUNDLE TAGS
     public static final String ERROR_INFO = "error_info";
 
-    public static final String ERROR_EMAIL_ADDRESS = "crashreport@gmx.com";
+    public static final String ERROR_EMAIL_ADDRESS = "crashreport@newpipe.schabi.org";
     public static final String ERROR_EMAIL_SUBJECT = "Exception in ";
 
     public static final String ERROR_GITHUB_ISSUE_URL =
-            "https://github.com/bravenewpipe/NewPipeExtractor/issues";
+            "https://github.com/TeamNewPipe/NewPipe/issues";
 
     private ErrorInfo errorInfo;
     private String currentTimeStamp;
@@ -117,7 +117,7 @@ public class ErrorActivity extends AppCompatActivity {
 
         // normal bugreport
         buildInfo(errorInfo);
-        activityErrorBinding.errorMessageView.setText(errorInfo.getMessageStringId());
+        activityErrorBinding.errorMessageView.setText(errorInfo.getMessage(this));
         activityErrorBinding.errorView.setText(formErrorText(errorInfo.getStackTraces()));
 
         // print stack trace once again for debugging:

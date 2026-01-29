@@ -656,7 +656,7 @@ public class SearchFilterLogic {
      * We need to track this ourselves as we otherwise rely on androids functionality or lack of
      * tracking the before selected item that now is unselected.
      */
-    private static class ExclusiveGroups {
+    private static final class ExclusiveGroups {
 
         final SparseArrayCompat<Integer> actualSelectedFilterIdInExclusiveGroupMap =
                 new SparseArrayCompat<>();

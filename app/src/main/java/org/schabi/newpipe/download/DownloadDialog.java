@@ -393,8 +393,7 @@ public class DownloadDialog extends BraveDownloadDialog
                     }
                 }, throwable -> ErrorUtil.showSnackbar(context,
                         new ErrorInfo(throwable, UserAction.DOWNLOAD_OPEN_DIALOG,
-                                "Downloading video stream size",
-                                currentInfo.getServiceId()))));
+                                "Downloading video stream size", currentInfo))));
         disposables.add(StreamInfoWrapper.fetchMoreInfoForWrapper(currentInfo,
                 getWrappedAudioStreams())
                 .subscribe(result -> {
@@ -404,8 +403,7 @@ public class DownloadDialog extends BraveDownloadDialog
                     }
                 }, throwable -> ErrorUtil.showSnackbar(context,
                         new ErrorInfo(throwable, UserAction.DOWNLOAD_OPEN_DIALOG,
-                                "Downloading audio stream size",
-                                currentInfo.getServiceId()))));
+                                "Downloading audio stream size", currentInfo))));
         disposables.add(StreamInfoWrapper.fetchMoreInfoForWrapper(currentInfo,
                         wrappedSubtitleStreams)
                 .subscribe(result -> {
@@ -415,8 +413,7 @@ public class DownloadDialog extends BraveDownloadDialog
                     }
                 }, throwable -> ErrorUtil.showSnackbar(context,
                         new ErrorInfo(throwable, UserAction.DOWNLOAD_OPEN_DIALOG,
-                                "Downloading subtitle stream size",
-                                currentInfo.getServiceId()))));
+                                "Downloading subtitle stream size", currentInfo))));
     }
 
     private void setupAudioTrackSpinner() {
@@ -1146,7 +1143,7 @@ public class DownloadDialog extends BraveDownloadDialog
         }
 
         braveDownloadStartMissionWrapper(context, urls, storage, kind, threads,
-                currentInfo.getUrl(), psName, psArgs, nearLength, new ArrayList<>(recoveryInfo));
+                currentInfo, psName, psArgs, nearLength, new ArrayList<>(recoveryInfo));
 
         Toast.makeText(context, getString(R.string.download_has_started),
                 Toast.LENGTH_SHORT).show();

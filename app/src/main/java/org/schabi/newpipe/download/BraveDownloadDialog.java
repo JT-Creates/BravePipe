@@ -108,13 +108,13 @@ public abstract class BraveDownloadDialog extends DialogFragment {
             final StoredFileHelper storage,
             final char kind,
             final int threads,
-            final String source,
+            final StreamInfo streamInfo,
             final String psName,
             final String[] psArgs,
             final long nearLength,
             final ArrayList<MissionRecoveryInfo> recoveryInfo) {
         DownloadManagerService.startMission(context, urls, storage, kind, threads,
-                source, psName, psArgs, nearLength, new ArrayList<>(recoveryInfo),
+                streamInfo, psName, psArgs, nearLength, new ArrayList<>(recoveryInfo),
                 this.segments);
     }
 }
