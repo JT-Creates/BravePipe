@@ -31,7 +31,11 @@ Feel free to suggest which alternative platforms should be included. Any contrib
 - NicoNico
 - BiliBili
 - Local Storage
-  
+
+## Planned Features to be Added?
+- Android TV support
+- Kidding watched videos from search results.
+
 ## Other features not found in NewPipe
 - merged NewPipe x Sponsorblock into this fork. [NewPipe x Sponsorblock Readme](../README.md)
 - searchfilters: in the action menu of the search page you can now change
