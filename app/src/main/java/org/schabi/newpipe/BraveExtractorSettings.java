@@ -12,11 +12,9 @@ import org.schabi.newpipe.extractor.services.youtube.settings.YoutubeSettings;
 import java.util.Objects;
 
 import androidx.preference.PreferenceManager;
-/***
-    TODO: Implement BiliBili settings.
- ***/
 /**
  * BravePipeExtractor Settings that will be pushed into the extractor library.
+ * TODO: Implement BiliBili settings.
  */
 public class BraveExtractorSettings {
     private final Context context;
