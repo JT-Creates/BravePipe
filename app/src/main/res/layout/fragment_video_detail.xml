@@ -55,9 +55,9 @@
                         android:layout_height="64dp"
                         android:layout_gravity="center"
                         android:background="@android:color/transparent"
+                        android:contentDescription="@string/play"
                         android:src="@drawable/ic_play_arrow_shadow"
                         android:visibility="invisible"
-                        tools:ignore="ContentDescription"
                         tools:visibility="visible" />
 
                     <org.schabi.newpipe.views.NewPipeTextView
@@ -134,6 +134,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="2dp"
                         android:layout_gravity="bottom"
+                        android:contentDescription="@string/playback_progress_bar"
                         android:progressDrawable="?attr/progress_horizontal_drawable"
                         android:visibility="invisible"
                         tools:max="100"
@@ -187,8 +188,8 @@
                         android:layout_gravity="top|end"
                         android:layout_marginTop="11dp"
                         android:layout_marginEnd="10dp"
-                        android:src="@drawable/ic_expand_more"
-                        tools:ignore="ContentDescription" />
+                        android:contentDescription="@string/toggle_secondary_controls"
+                        android:src="@drawable/ic_expand_more" />
 
                 </FrameLayout>
 
@@ -603,7 +604,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:alpha="0.9"
-        android:background="?attr/windowBackground">
+        android:background="?attr/windowBackground"
+        android:clickable="true"
+        android:focusable="true">
 
         <ImageButton
             android:id="@+id/overlay_thumbnail"
@@ -611,11 +614,12 @@
             android:layout_height="60dp"
             android:layout_alignParentStart="true"
             android:background="@color/transparent_background_color"
+            android:contentDescription="@string/thumbnail"
             android:gravity="center_vertical"
             android:paddingLeft="@dimen/video_item_search_padding"
             android:paddingRight="@dimen/video_item_search_padding"
             android:scaleType="fitCenter"
-            tools:ignore="ContentDescription" />
+            android:focusable="true" />
 
         <LinearLayout
             android:id="@+id/overlay_metadata_layout"
@@ -676,6 +680,8 @@
                 android:contentDescription="@string/title_activity_play_queue"
                 android:scaleType="center"
                 android:src="@drawable/ic_list"
+                android:focusable="true"
+                android:clickable="true"
                 tools:ignore="RtlHardcoded" />
 
             <ImageButton
@@ -686,6 +692,7 @@
                 android:contentDescription="@string/pause"
                 android:focusable="true"
                 android:focusedByDefault="true"
+                android:clickable="true"
                 android:scaleType="center"
                 android:src="@drawable/ic_play_arrow" />
 
@@ -698,6 +705,8 @@
                 android:paddingRight="8dp"
                 android:scaleType="center"
                 android:src="@drawable/ic_close"
+                android:focusable="true"
+                android:clickable="true"
                 tools:ignore="RtlSymmetry" />
 
         </LinearLayout>
