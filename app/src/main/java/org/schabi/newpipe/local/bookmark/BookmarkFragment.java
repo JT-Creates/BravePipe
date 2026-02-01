@@ -41,6 +41,7 @@ import org.schabi.newpipe.local.playlist.LocalPlaylistManager;
 import org.schabi.newpipe.local.playlist.RemotePlaylistManager;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.OnClickGesture;
+import org.schabi.newpipe.util.RemoteControlHelper;
 import org.schabi.newpipe.util.debounce.DebounceSavable;
 import org.schabi.newpipe.util.debounce.DebounceSaver;
 
@@ -64,6 +65,7 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
     private LocalPlaylistManager localPlaylistManager;
     private RemotePlaylistManager remotePlaylistManager;
     private ItemTouchHelper itemTouchHelper;
+    private RemoteControlHelper remoteControlHelper;
 
     /* Have the bookmarked playlists been fully loaded from db */
     private AtomicBoolean isLoadingComplete;
@@ -130,8 +132,18 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
     protected void initListeners() {
         super.initListeners();
 
+        itemsList.setFocusable(true);
+        itemsList.setFocusableInTouchMode(true);
+        itemsList.requestFocus();
+
         itemTouchHelper = new ItemTouchHelper(getItemTouchCallback());
         itemTouchHelper.attachToRecyclerView(itemsList);
+
+        // Enable remote control drag support
+        remoteControlHelper = new RemoteControlHelper(
+                itemsList,
+                getItemTouchCallback()
+        );
 
         itemListAdapter.setSelectedListener(new OnClickGesture<>() {
             @Override
@@ -218,6 +230,10 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
 
         databaseSubscription = null;
         itemTouchHelper = null;
+        if (remoteControlHelper != null) {
+            remoteControlHelper.cleanup();
+            remoteControlHelper = null;
+        }
     }
 
     @Override

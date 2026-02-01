@@ -47,6 +47,7 @@ import org.schabi.newpipe.player.playqueue.PlayQueueItemTouchCallback;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.PermissionHelper;
+import org.schabi.newpipe.util.RemoteControlHelper;
 import org.schabi.newpipe.util.ServiceHelper;
 import org.schabi.newpipe.util.ThemeHelper;
 
@@ -79,6 +80,7 @@ public final class PlayQueueActivity extends AppCompatActivity
     private ActivityPlayerQueueControlBinding queueControlBinding;
 
     private ItemTouchHelper itemTouchHelper;
+    private RemoteControlHelper remoteControlHelper;
 
     private Menu menu;
 
@@ -211,6 +213,10 @@ public final class PlayQueueActivity extends AppCompatActivity
             }
 
             itemTouchHelper = null;
+            if (remoteControlHelper != null) {
+                remoteControlHelper.cleanup();
+                remoteControlHelper = null;
+            }
             player = null;
         }
     }
@@ -264,11 +270,20 @@ public final class PlayQueueActivity extends AppCompatActivity
         queueControlBinding.playQueue.setLayoutManager(new LinearLayoutManager(this));
         queueControlBinding.playQueue.setClickable(true);
         queueControlBinding.playQueue.setLongClickable(true);
+        queueControlBinding.playQueue.setFocusable(true);
+        queueControlBinding.playQueue.setFocusableInTouchMode(true);
+        queueControlBinding.playQueue.requestFocus();
         queueControlBinding.playQueue.clearOnScrollListeners();
         queueControlBinding.playQueue.addOnScrollListener(getQueueScrollListener());
 
         itemTouchHelper = new ItemTouchHelper(getItemTouchCallback());
         itemTouchHelper.attachToRecyclerView(queueControlBinding.playQueue);
+
+        // Enable remote control drag support
+        remoteControlHelper = new RemoteControlHelper(
+                queueControlBinding.playQueue,
+                getItemTouchCallback()
+        );
     }
 
     private void buildMetadata() {

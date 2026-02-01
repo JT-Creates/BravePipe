@@ -122,6 +122,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:contentDescription="@string/seek_bar"
             android:paddingStart="12dp"
             android:paddingTop="6dp"
             android:paddingEnd="12dp"
@@ -172,11 +173,11 @@
             android:layout_toLeftOf="@+id/control_backward"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:clickable="true"
+            android:contentDescription="@string/repeat_all"
             android:focusable="true"
             android:scaleType="fitXY"
             android:src="@drawable/ic_repeat"
-            android:tint="?attr/colorAccent"
-            tools:ignore="ContentDescription" />
+            android:tint="?attr/colorAccent" />
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/control_backward"
@@ -187,11 +188,11 @@
             android:layout_toLeftOf="@+id/control_fast_rewind"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:clickable="true"
+            android:contentDescription="@string/previous_stream"
             android:focusable="true"
             android:scaleType="fitCenter"
             android:src="@drawable/ic_previous"
-            android:tint="?attr/colorAccent"
-            tools:ignore="ContentDescription" />
+            android:tint="?attr/colorAccent" />
 
         <ImageButton
             android:id="@+id/control_fast_rewind"
@@ -202,6 +203,7 @@
             android:layout_toLeftOf="@id/control_play_pause"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:clickable="true"
+            android:contentDescription="@string/rewind"
             android:focusable="true"
             android:scaleType="fitCenter"
             android:src="@drawable/exo_controls_rewind"
@@ -217,11 +219,11 @@
             android:layout_marginRight="5dp"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:clickable="true"
+            android:contentDescription="@string/play_pause"
             android:focusable="true"
             android:scaleType="fitCenter"
             android:src="@drawable/ic_pause"
-            android:tint="?attr/colorAccent"
-            tools:ignore="ContentDescription" />
+            android:tint="?attr/colorAccent" />
 
         <ProgressBar
             android:id="@+id/control_progress_bar"
@@ -252,6 +254,7 @@
             android:layout_toRightOf="@id/control_play_pause"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:clickable="true"
+            android:contentDescription="@string/fast_forward"
             android:focusable="true"
             android:scaleType="fitCenter"
             android:src="@drawable/exo_controls_fastforward"
@@ -266,11 +269,11 @@
             android:layout_toRightOf="@+id/control_fast_forward"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:clickable="true"
+            android:contentDescription="@string/next_stream"
             android:focusable="true"
             android:scaleType="fitCenter"
             android:src="@drawable/ic_next"
-            android:tint="?attr/colorAccent"
-            tools:ignore="ContentDescription" />
+            android:tint="?attr/colorAccent" />
 
         <ImageButton
             android:id="@+id/control_shuffle"
@@ -282,11 +285,11 @@
             android:layout_toRightOf="@+id/control_forward"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:clickable="true"
+            android:contentDescription="@string/shuffle"
             android:focusable="true"
             android:scaleType="fitXY"
             android:src="@drawable/ic_shuffle"
-            android:tint="?attr/colorAccent"
-            tools:ignore="ContentDescription" />
+            android:tint="?attr/colorAccent" />
 
     </RelativeLayout>
 </RelativeLayout>

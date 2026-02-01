@@ -59,6 +59,7 @@ import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.OnClickGesture;
 import org.schabi.newpipe.util.PlayButtonHelper;
+import org.schabi.newpipe.util.RemoteControlHelper;
 import org.schabi.newpipe.util.debounce.DebounceSavable;
 import org.schabi.newpipe.util.debounce.DebounceSaver;
 import org.schabi.newpipe.util.external_communication.ShareUtils;
@@ -90,6 +91,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
     private PlaylistControlBinding playlistControlBinding;
 
     private ItemTouchHelper itemTouchHelper;
+    private RemoteControlHelper remoteControlHelper;
 
     private LocalPlaylistManager playlistManager;
     private Subscription databaseSubscription;
@@ -174,8 +176,18 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
 
         headerBinding.playlistTitleView.setOnClickListener(view -> createRenameDialog());
 
+        itemsList.setFocusable(true);
+        itemsList.setFocusableInTouchMode(true);
+        itemsList.requestFocus();
+
         itemTouchHelper = new ItemTouchHelper(getItemTouchCallback());
         itemTouchHelper.attachToRecyclerView(itemsList);
+
+        // Enable remote control drag support
+        remoteControlHelper = new RemoteControlHelper(
+                itemsList,
+                getItemTouchCallback()
+        );
 
         itemListAdapter.setSelectedListener(new OnClickGesture<>() {
             @Override
@@ -292,6 +304,10 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
 
         databaseSubscription = null;
         itemTouchHelper = null;
+        if (remoteControlHelper != null) {
+            remoteControlHelper.cleanup();
+            remoteControlHelper = null;
+        }
     }
 
     @Override
@@ -903,4 +919,3 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
         this.tabsPagerAdapter = tabsPagerAdapter;
     }
 }
-

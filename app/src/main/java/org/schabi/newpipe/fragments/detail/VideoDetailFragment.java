@@ -530,6 +530,7 @@ public final class VideoDetailFragment
         binding.overlayThumbnail.setOnClickListener(overlayListener);
         binding.overlayMetadataLayout.setOnClickListener(overlayListener);
         binding.overlayButtonsLayout.setOnClickListener(overlayListener);
+        binding.overlayButtonsLayout.setOnClickListener(overlayListener);
         binding.overlayCloseButton.setOnClickListener(v -> bottomSheetBehavior
                 .setState(BottomSheetBehavior.STATE_HIDDEN));
         binding.overlayPlayQueueButton.setOnClickListener(v -> openPlayQueue(requireContext()));
@@ -2492,6 +2493,7 @@ public final class VideoDetailFragment
         binding.overlayThumbnail.setLongClickable(enable);
         binding.overlayMetadataLayout.setClickable(enable);
         binding.overlayMetadataLayout.setLongClickable(enable);
+        binding.overlayButtonsLayout.setClickable(enable);
         binding.overlayButtonsLayout.setClickable(enable);
         binding.overlayPlayQueueButton.setClickable(enable);
         binding.overlayPlayPauseButton.setClickable(enable);

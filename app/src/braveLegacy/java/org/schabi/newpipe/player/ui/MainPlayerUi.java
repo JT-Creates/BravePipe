@@ -70,7 +70,9 @@ import org.schabi.newpipe.player.playqueue.PlayQueueItemBuilder;
 import org.schabi.newpipe.player.playqueue.PlayQueueItemHolder;
 import org.schabi.newpipe.player.playqueue.PlayQueueItemTouchCallback;
 import org.schabi.newpipe.util.DeviceUtils;
+import org.schabi.newpipe.util.FocusOutlineHelper;
 import org.schabi.newpipe.util.NavigationHelper;
+import org.schabi.newpipe.util.RemoteControlDragHelper;
 import org.schabi.newpipe.util.external_communication.KoreUtils;
 import org.schabi.newpipe.util.external_communication.ShareUtils;
 
@@ -100,6 +102,7 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
 
     // fullscreen player
     private ItemTouchHelper itemTouchHelper;
+    private RemoteControlDragHelper remoteControlDragHelper;
 
     /*//////////////////////////////////////////////////////////////////////////
     // Constructor, setup, destroy
@@ -636,6 +639,15 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
         itemTouchHelper = new ItemTouchHelper(getItemTouchCallback());
         itemTouchHelper.attachToRecyclerView(binding.itemsList);
 
+        // Enable remote control drag support
+        remoteControlDragHelper = new RemoteControlDragHelper(
+                binding.itemsList,
+                getItemTouchCallback()
+        );
+
+        // Apply focus outline styling for better TV visibility
+        FocusOutlineHelper.applyFocusOutlineToRecyclerView(binding.itemsList, context);
+
         playQueueAdapter.setSelectedListener(getOnSelectedListener());
 
         binding.itemsListClose.setOnClickListener(view -> closeItemsList());
@@ -674,6 +686,11 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
             itemTouchHelper.attachToRecyclerView(null);
         }
 
+        if (remoteControlDragHelper != null) {
+            remoteControlDragHelper.cleanup();
+            remoteControlDragHelper = null;
+        }
+
         player.getCurrentStreamInfo().ifPresent(segmentAdapter::setItems);
 
         binding.shuffleButton.setVisibility(View.GONE);
@@ -689,6 +706,11 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
 
             if (itemTouchHelper != null) {
                 itemTouchHelper.attachToRecyclerView(null);
+            }
+
+            if (remoteControlDragHelper != null) {
+                remoteControlDragHelper.cleanup();
+                remoteControlDragHelper = null;
             }
 
             animate(binding.itemsListPanel, false, DEFAULT_CONTROLS_DURATION,

@@ -36,6 +36,7 @@ import org.schabi.newpipe.databinding.ItemInstanceBinding;
 import org.schabi.newpipe.extractor.services.peertube.PeertubeInstance;
 import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.PeertubeHelper;
+import org.schabi.newpipe.util.RemoteControlHelper;
 import org.schabi.newpipe.util.ThemeHelper;
 
 import java.util.ArrayList;
@@ -51,6 +52,8 @@ public class PeertubeInstanceListFragment extends Fragment {
     private PeertubeInstance selectedInstance;
     private String savedInstanceListKey;
     private InstanceListAdapter instanceListAdapter;
+    private ItemTouchHelper itemTouchHelper;
+    private RemoteControlHelper remoteControlHelper;
 
     private FragmentInstanceListBinding binding;
     private SharedPreferences sharedPreferences;
@@ -88,9 +91,18 @@ public class PeertubeInstanceListFragment extends Fragment {
                 getString(R.string.peertube_instance_list_url)));
         binding.addInstanceButton.setOnClickListener(v -> showAddItemDialog(requireContext()));
         binding.instances.setLayoutManager(new LinearLayoutManager(requireContext()));
+        binding.instances.setFocusable(true);
+        binding.instances.setFocusableInTouchMode(true);
+        binding.instances.requestFocus();
 
-        final ItemTouchHelper itemTouchHelper = new ItemTouchHelper(getItemTouchCallback());
+        itemTouchHelper = new ItemTouchHelper(getItemTouchCallback());
         itemTouchHelper.attachToRecyclerView(binding.instances);
+
+        // Enable remote control drag support
+        remoteControlHelper = new RemoteControlHelper(
+                binding.instances,
+                getItemTouchCallback()
+        );
 
         instanceListAdapter = new InstanceListAdapter(requireContext(), itemTouchHelper);
         binding.instances.setAdapter(instanceListAdapter);
@@ -113,6 +125,11 @@ public class PeertubeInstanceListFragment extends Fragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
+        if (remoteControlHelper != null) {
+            remoteControlHelper.cleanup();
+            remoteControlHelper = null;
+        }
+        itemTouchHelper = null;
         if (disposables != null) {
             disposables.clear();
         }

@@ -17,6 +17,7 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginEnd="@dimen/comment_item_avatar_right_margin"
+        android:contentDescription="@string/thumbnail"
         android:focusable="false"
         android:src="@drawable/placeholder_person"
         app:shapeAppearance="@style/CircularImageView"

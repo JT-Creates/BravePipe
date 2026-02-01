@@ -882,4 +882,22 @@
     <string name="youtube_player_http_403">HTTP error 403 received from server while playing, likely caused by an IP ban or streaming URL deobfuscation issues</string>
     <string name="sign_in_confirm_not_bot_error">%1$s refused to provide data, asking for a login to confirm the requester is not a bot.\n\nYour IP might have been temporarily banned by %1$s, you can wait some time or switch to a different IP (for example by turning on/off a VPN, or by switching from WiFi to mobile data).</string>
     <string name="unsupported_content_in_country">This content is not available for the currently selected content country.\n\nChange your selection from \"Settings > Content > Default content country\".</string>
+    <string name="playback_tempo_step">Tempo step</string>
+    <string name="settings_category_sponsor_block_category_disabled_title">Disabled</string>
+    <string name="seek_bar">Seek bar</string>
+    <string name="repeat_all">Repeat all</string>
+    <string name="play_pause">Play/Pause</string>
+    <string name="fast_forward">Fast forward</string>
+    <string name="shuffle">Shuffle</string>
+    <string name="add_new_group">Add new group</string>
+    <string name="playback_progress_bar">Playback progress bar</string>
+    <string name="toggle_secondary_controls">Toggle secondary controls</string>
+    <string name="thumbnail">Thumbnail</string>
+    <string name="item_icon">Item icon</string>
+    <string name="end_screen">End screen</string>
+    <string name="seek_bar_preview">Seek bar preview</string>
+    <string name="volume_bar">Volume bar</string>
+    <string name="volume_icon">Volume icon</string>
+    <string name="brightness_bar">Brightness bar</string>
+    <string name="brightness_icon">Brightness icon</string>
 </resources>

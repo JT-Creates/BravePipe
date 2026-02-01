@@ -49,9 +49,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
+        android:contentDescription="@string/end_screen"
         android:visibility="gone"
         tools:background="@android:color/white"
-        tools:ignore="ContentDescription"
         tools:visibility="visible" />
 
     <View
@@ -450,6 +450,7 @@
                         android:id="@+id/currentSeekbarPreviewThumbnail"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:contentDescription="@string/seek_bar_preview"
                         android:paddingTop="2dp"
                         android:src="@drawable/placeholder_thumbnail_video"
                         android:visibility="gone"
@@ -490,6 +491,7 @@
                     android:layout_gravity="center"
                     android:layout_marginTop="2dp"
                     android:layout_weight="1"
+                    android:contentDescription="@string/seek_bar"
                     android:nextFocusDown="@id/screenRotationButton"
                     tools:progress="25"
                     tools:secondaryProgress="50" />
@@ -751,6 +753,7 @@
                     style="?android:progressBarStyleHorizontal"
                     android:layout_width="128dp"
                     android:layout_height="128dp"
+                    android:contentDescription="@string/volume_bar"
                     android:indeterminate="false"
                     android:progressDrawable="@drawable/progress_circular_white" />
 
@@ -759,8 +762,8 @@
                     android:layout_width="70dp"
                     android:layout_height="70dp"
                     android:layout_centerInParent="true"
+                    android:contentDescription="@string/volume_icon"
                     app:tint="@color/white"
-                    tools:ignore="ContentDescription"
                     tools:src="@drawable/ic_volume_up" />
             </RelativeLayout>
 
@@ -778,6 +781,7 @@
                     style="?android:progressBarStyleHorizontal"
                     android:layout_width="128dp"
                     android:layout_height="128dp"
+                    android:contentDescription="@string/brightness_bar"
                     android:indeterminate="false"
                     android:progressDrawable="@drawable/progress_circular_white" />
 
@@ -786,8 +790,8 @@
                     android:layout_width="70dp"
                     android:layout_height="70dp"
                     android:layout_centerInParent="true"
+                    android:contentDescription="@string/brightness_icon"
                     app:tint="@color/white"
-                    tools:ignore="ContentDescription"
                     tools:src="@drawable/ic_brightness_high" />
             </RelativeLayout>
             <include layout="@layout/include_brave_player_ext"

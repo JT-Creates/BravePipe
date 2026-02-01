@@ -36,6 +36,7 @@ import org.schabi.newpipe.settings.SelectKioskFragment;
 import org.schabi.newpipe.settings.SelectPlaylistFragment;
 import org.schabi.newpipe.settings.SelectFeedGroupFragment;
 import org.schabi.newpipe.settings.tabs.AddTabDialog.ChooseTabListItem;
+import org.schabi.newpipe.util.RemoteControlHelper;
 import org.schabi.newpipe.util.ThemeHelper;
 
 import java.util.ArrayList;
@@ -47,6 +48,8 @@ public class ChooseTabsFragment extends Fragment {
 
     private final List<Tab> tabList = new ArrayList<>();
     private ChooseTabsFragment.SelectedTabsAdapter selectedTabsAdapter;
+    private ItemTouchHelper itemTouchHelper;
+    private RemoteControlHelper remoteControlHelper;
 
     /*//////////////////////////////////////////////////////////////////////////
     // Lifecycle
@@ -77,9 +80,18 @@ public class ChooseTabsFragment extends Fragment {
 
         final RecyclerView listSelectedTabs = rootView.findViewById(R.id.selectedTabs);
         listSelectedTabs.setLayoutManager(new LinearLayoutManager(requireContext()));
+        listSelectedTabs.setFocusable(true);
+        listSelectedTabs.setFocusableInTouchMode(true);
+        listSelectedTabs.requestFocus();
 
-        final ItemTouchHelper itemTouchHelper = new ItemTouchHelper(getItemTouchCallback());
+        itemTouchHelper = new ItemTouchHelper(getItemTouchCallback());
         itemTouchHelper.attachToRecyclerView(listSelectedTabs);
+
+        // Enable remote control drag support
+        remoteControlHelper = new RemoteControlHelper(
+                listSelectedTabs,
+                getItemTouchCallback()
+        );
 
         selectedTabsAdapter = new SelectedTabsAdapter(requireContext(), itemTouchHelper);
         listSelectedTabs.setAdapter(selectedTabsAdapter);
@@ -95,6 +107,11 @@ public class ChooseTabsFragment extends Fragment {
     @Override
     public void onPause() {
         super.onPause();
+        if (remoteControlHelper != null) {
+            remoteControlHelper.cleanup();
+            remoteControlHelper = null;
+        }
+        itemTouchHelper = null;
         saveChanges();
     }
 
