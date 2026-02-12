@@ -25,4 +25,9 @@
     <!-- begin - BraveLogcatMisc config option data -->
     <string name="brave_settings_debug_logcat_viewer_key">brave_settings_debug_logcat_viewer_key</string>
     <!-- end - BraveLogcatMisc config option data -->
+
+    <!-- begin - BackupRestoreSettingsFragment config option data -->
+    <string name="brave_import_subscriptions">brave_import_subscriptions</string>
+    <string name="brave_export_subscriptions">brave_export_subscriptions</string>
+    <!-- end - BackupRestoreSettingsFragment config option data -->
 </resources>
