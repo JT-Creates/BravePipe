@@ -51,7 +51,7 @@ class ErrorUtil {
             }
 
             if (PreferenceManager.getDefaultSharedPreferences(context)
-                .getBoolean(MainActivity.KEY_IS_IN_BACKGROUND, true)
+                    .getBoolean(MainActivity.KEY_IS_IN_BACKGROUND, true)
             ) {
                 createNotification(context, errorInfo)
             } else {

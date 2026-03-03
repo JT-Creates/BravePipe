@@ -17,5 +17,17 @@
     <string name="fetch_channel_tabs_podcasts">fetch_channel_tabs_podcasts</string>
     <!-- end - youtube podcasts feature -->
 
+    <!-- begin - BraveCChallenge403Interceptor config option data -->
     <string name="brave_settings_handle_cloudflare_challenge_enable_key">brave_settings_handle_cloudflare_challenge_enable_key</string>
+    <string name="brave_settings_handle_cloudflare_challenge_interactive_enable_key">brave_settings_handle_cloudflare_challenge_interactive_enable_key</string>
+    <!-- end - BraveCChallenge403Interceptor config option data -->
+
+    <!-- begin - BraveLogcatMisc config option data -->
+    <string name="brave_settings_debug_logcat_viewer_key">brave_settings_debug_logcat_viewer_key</string>
+    <!-- end - BraveLogcatMisc config option data -->
+
+    <!-- begin - BackupRestoreSettingsFragment config option data -->
+    <string name="brave_import_subscriptions">brave_import_subscriptions</string>
+    <string name="brave_export_subscriptions">brave_export_subscriptions</string>
+    <!-- end - BackupRestoreSettingsFragment config option data -->
 </resources>

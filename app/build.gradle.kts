@@ -43,9 +43,9 @@ android {
         minSdk = 21
         targetSdk = 35
 
-        versionCode = System.getProperty("versionCodeOverride")?.toInt() ?: 1006
+        versionCode = System.getProperty("versionCodeOverride")?.toInt() ?: 1008
 
-        versionName = "0.28.1"
+        versionName = "0.28.3"
         System.getProperty("versionNameSuffix")?.let { versionNameSuffix = it }
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -90,7 +90,7 @@ android {
         // the amount of trailing zeros depends on the amount of digits the
         // defaultConfig.versionCode has -> we just prepend our increasing
         // versionCode before those zeros.
-        val braveVersionCode = 510000
+        val braveVersionCode = 530000
         // -> our versionName will be added as suffix to defaultConfig.versionName
         // We use major.minor.patch
         val braveVersionName = "2.6.0"
@@ -216,6 +216,13 @@ ksp {
 
 // Custom dependency configuration for ktlint
 val ktlint by configurations.creating
+
+// https://checkstyle.org/#JRE_and_JDK
+tasks.withType<Checkstyle>().configureEach {
+    javaLauncher = javaToolchains.launcherFor {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
 
 checkstyle {
     configDirectory = rootProject.file("checkstyle")
@@ -397,14 +404,16 @@ project.dependencies.implementation("com.squareup.okhttp3:okhttp-urlconnection:$
 // for hls support on rumble
 project.dependencies.implementation("com.github.evermind-zz:hlsdownloader:1.0.0")
 project.dependencies.implementation("com.github.evermind-zz:slimhls-converter:1.0.0")
-// rumble cloudflare challenge
-project.dependencies.implementation("com.github.evermind-zz:Cloudflare-Bypass:c4264c53e3")
 // apk upgrade dialog/downloader
 project.dependencies.implementation("com.github.evermind-zz.AppUpdater:app-dialog:1.2.0-1.2.0")
 project.dependencies.implementation("com.github.evermind-zz.AppUpdater:app-updater:1.2.0-1.2.0")
 // the eventbus
 project.dependencies.implementation("org.greenrobot:eventbus:3.3.1")
-project.dependencies.implementation("com.github.bravepipeproject:extractor:v0.25.0-2.3.4")
+project.dependencies.implementation("com.github.bravepipeproject:extractor:v0.25.2-2.3.4")
+// the logcatviewer
+project.dependencies.implementation("com.github.evermind-zz:logcatviewer:1.0.0")
+// cf challenge helper
+project.dependencies.implementation("com.github.evermind-zz:challengeFloatsAway:1.0.0")
 
 configurations.all {
     exclude(group = "com.github.TeamNewPipe", module = "NewPipeExtractor")

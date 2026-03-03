@@ -30,7 +30,21 @@ include (":app")
 
 //includeBuild("../BravePipeExtractor") {
 //    dependencySubstitution {
-//        substitute(module("com.github.bravepipeproject:BravePipeExtractor"))
+//        substitute(module("com.github.bravepipeproject:extractor"))
 //            .using(project(":extractor"))
+//    }
+//}
+
+//includeBuild("../logcatviewer") {
+//    dependencySubstitution {
+//        substitute(module("com.github.evermind-zz:logcatviewer"))
+//            .using(project(":"))
+//    }
+//}
+
+//includeBuild("../challengeFloatsAway") {
+//    dependencySubstitution {
+//        substitute(module("com.github.evermind-zz:challengeFloatsAway"))
+//            .using(project(":library"))
 //    }
 //}
